@@ -1,0 +1,14 @@
+html {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+}
+
+table,
+tr,
+td {
+    border-bottom: 1px solid #ccc;
+}
+
+td {
+    padding: 0 16px;
+}

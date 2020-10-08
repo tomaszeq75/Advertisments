@@ -1,7 +1,7 @@
 const advertisments = [
     {
         id: 0,
-        priority: 1,
+        priority: 10,
         shown: 0,
         showCounter: 0,
     },
@@ -13,13 +13,13 @@ const advertisments = [
     },
     {
         id: 2,
-        priority: 10,
+        priority: 7,
         shown: 0,
         showCounter: 0,
     },
     {
         id: 3,
-        priority: 7,
+        priority: 10,
         shown: 0,
         showCounter: 0,
     },
@@ -97,6 +97,8 @@ const advertisments = [
     },
 ];
 
+const orderTable = document.getElementById("order-table");
+
 const priorityQuantity = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 countPriority(advertisments, priorityQuantity);
 // console.table(priorityQuantity);
@@ -127,7 +129,17 @@ function getPriorityGroups(adverts) {
 function showAdvertisment(ad) {
     ad.showCounter++;
     ad.shown = 1;
-    console.log(ad);
+    insertRow(ad)
+}
+
+function insertRow({ id, priority, showCounter }) {
+    const row = orderTable.insertRow();
+    const idCell = row.insertCell(0);
+    const priorityCell = row.insertCell(1);
+    const counterCell = row.insertCell(2);
+    idCell.innerHTML = id;
+    priorityCell.innerHTML = priority;
+    counterCell.innerHTML = showCounter;
 }
 
 function chooseAdvertisment(priorityGroups) {
@@ -135,10 +147,11 @@ function chooseAdvertisment(priorityGroups) {
     for (let index = 10; index > 0; index--) {
         const currentGroup = priorityGroups[index];
 
-        // wyświetlamy tyle razy ile jest reklam o tym samym priorytecie
+        // powtarzamy tyle razy ile jest reklam o tym samym priorytecie
         for (let i = 0; i <= currentGroup.length; i++) {
+
             // wyświetlamy tyle razy jaki jest priorytet
-            for (let i = 0; i < index; i++) {
+            for (let j = 0; j < index; j++) {
                 const currentAd = currentGroup.find((item) => {
                     return item.shown == 0;
                 });
